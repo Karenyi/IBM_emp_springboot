@@ -1,0 +1,13 @@
+#port http://localhost:8081/IBM_emp_springboot/
+server:
+  port: 8081  servlet:    context-path: /IBM_emp_springboot
+
+spring:  thymeleaf:    cache: false
+    encoding: UTF-8  datasource:    username: sa
+    password: 123456
+    url: jdbc:oracle:thin:@localhost:32769:ORCLCDB
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+  mvc:    view:      prefix: classpath:/templates/
+      suffix: .html  jpa:    database-platform: org.hibernate.dialect.Oracle12cDialect
+    show-sql: true
+  resources:    static-locations: classpath:/static/

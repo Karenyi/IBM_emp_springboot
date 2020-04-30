@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>所有部門</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table.css}">
+</head>
+<body>
+    <h3>所有部門</h3>
+
+    <table>
+        <tr>
+            <th>部門編號</th>
+            <th>部門名稱</th>
+            <th>部門基地</th>
+            <th>修改</th>
+            <th>刪除<font color=red>(關聯測試)</font></th>
+            <th>查詢部門員工</th>
+        </tr>
+
+            <tr align='center' valign='middle' th:each="deptVO:${deptall}">
+                <td>[[${deptVO.deptno}]]</td>
+                <td>[[${deptVO.dname}]]</td>
+                <td>[[${deptVO.loc}]]</td>
+                <td>
+                    <form method="POST" th:action="@{/dept/getOneDisplay}">
+                        <input type="submit" value="修改">
+                        <input type="hidden" name="deptno" th:value="${deptVO.deptno}">
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" th:action="@{/dept/delete}">
+                        <input type="submit" value="刪除">
+                        <input type="hidden" name="deptno" th:value="${deptVO.deptno}">
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" th:action="@{/dept/listEmps_ByDeptno}">
+                        <input type="submit" value="送出查詢">
+                        <input type="hidden" name="deptno" th:value="${deptVO.deptno}">
+                    </form>
+                </td>
+            </tr>
+    </table>
+    <br />
+    
+        <a th:href="@{/index}">回首頁</a>
+    
+</html>
